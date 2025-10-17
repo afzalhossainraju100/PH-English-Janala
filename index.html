@@ -36,7 +36,7 @@
   <body class="pt-16">
     <div
       id="navbar"
-      class="navbar fixed top-0 left-0 right-0 z-50 shadow-sm bg-[#badeff56] transition-colors duration-300"
+      class="navbar fixed top-0 left-0 right-0 z-50 shadow-sm bg-[#85c4ff4e] transition-colors duration-300"
     >
       <div class="flex flex-1 items-center">
         <h1
@@ -51,8 +51,12 @@
           জানালা
         </h1>
       </div>
-      <div class="flex-none">
-        <ul class="menu menu-horizontal px-1 gap-2">
+      <div class="flex-none flex items-center gap-2">
+        <!-- desktop menu (hidden on small screens) -->
+        <ul
+          id="desktop-menu"
+          class="hidden md:flex menu menu-horizontal px-1 gap-2"
+        >
           <li
             class="box-border border-1 border-[#422AD5] rounded-sm text-[#422AD5] font-bold"
           >
@@ -67,6 +71,32 @@
             class="box-border border-1 border-[#422AD5] rounded-lg text-[#422AD5] font-bold"
           >
             <a><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
+          </li>
+        </ul>
+
+        <!-- hamburger for small screens -->
+        <button
+          id="nav-toggle"
+          class="md:hidden btn btn-ghost"
+          aria-label="Open menu"
+        >
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+      <!-- mobile dropdown (visible when toggled) -->
+      <div
+        id="mobile-menu"
+        class="hidden md:hidden absolute right-4 mt-12 bg-white shadow-lg rounded-lg p-2 z-50"
+      >
+        <ul class="menu menu-vertical">
+          <li class="border-b border-gray-100">
+            <a><i class="fa-solid fa-circle-question mr-2"></i>FAQ</a>
+          </li>
+          <li class="border-b border-gray-100">
+            <a><i class="fa-solid fa-book-open mr-2"></i>Learn</a>
+          </li>
+          <li>
+            <a><i class="fa-solid fa-right-from-bracket mr-2"></i>Logout</a>
           </li>
         </ul>
       </div>
@@ -108,6 +138,8 @@
           <img
             src="./assets/download (1).jpeg"
             class="rounded-lg w-full h-auto"
+            alt="Student learning illustration"
+            title="Student learning illustration"
           />
         </div>
       </div>
@@ -147,8 +179,10 @@
       </div>
     </section>
 
-    <section id="spinner" class="flex justify-center items-center py-10 hidden">
-      <span class="loading loading-bars loading-xl"></span>
+    <section id="spinner" class="hidden">
+      <div class="flex justify-center items-center py-10">
+        <span class="loading loading-bars loading-xl"></span>
+      </div>
     </section>
 
     <section id="lecture-details" class="px-10 lecture mt-4 mb-4">
@@ -283,7 +317,10 @@
         <div class="modal-action justify-start">
           <form class="text-left" method="dialog">
             <!-- if there is a button in form, it will close the modal -->
-            <button class="btn bg-blue-700 p-2 rounded-lg text-[#ffffff]">
+            <button
+              type="button"
+              class="btn bg-blue-700 p-2 rounded-lg text-[#ffffff]"
+            >
               Complete Learning
             </button>
           </form>
@@ -323,15 +360,18 @@
         <div class="flex flex-col justify-end gap-1">
           <p class="text-[gray] text-[12px]">FOLLOW US</p>
           <div>
-            <a href="https://www.facebook.com/mmafzal.raju"
-              ><i class="fa-brands fa-facebook"></i
-            ></a>
-            <a href="https://www.youtube.com/@afzalhossainraju"
-              ><i class="fa-brands fa-youtube"></i
-            ></a>
-            <a href="https://www.instagram.com/m.m.a.h.raju/"
-              ><i class="fa-brands fa-instagram"></i
-            ></a>
+            <a href="https://www.facebook.com/mmafzal.raju" title="Facebook">
+              <i class="fa-brands fa-facebook" aria-hidden="true"></i>
+              <span class="sr-only">Facebook</span>
+            </a>
+            <a href="https://www.youtube.com/@afzalhossainraju" title="YouTube">
+              <i class="fa-brands fa-youtube" aria-hidden="true"></i>
+              <span class="sr-only">YouTube</span>
+            </a>
+            <a href="https://www.instagram.com/m.m.a.h.raju/" title="Instagram">
+              <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+              <span class="sr-only">Instagram</span>
+            </a>
           </div>
         </div>
       </div>

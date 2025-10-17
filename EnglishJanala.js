@@ -265,14 +265,31 @@ window.addEventListener("scroll", () => {
   const nav = document.getElementById("navbar");
   if (!nav) return;
   if (window.scrollY > 10) {
-    nav.classList.remove("bg-transparent");
-    nav.classList.add("bg-[#badeff]");
-  } else {
-    nav.classList.remove("bg-[#badeff]");
-    nav.classList.add("bg-[#badeff56]");
-  }
-  if (window.scrollY  <=  10) {
-    nav.classList.remove("bg-[#badeff]");
-    nav.classList.add("bg-[#badeff56]");
+    nav.classList.remove("bg-[#85c4ff4e]");
+    nav.classList.add("bg-[#9ccfff]");
+  } else if (window.scrollY <= 10) {
+    nav.classList.remove("bg-[#9ccfff]");
+    nav.classList.add("bg-[#85c4ff4e]");
   }
 });
+
+// Mobile menu toggle
+const navToggle = document.getElementById("nav-toggle");
+const mobileMenu = document.getElementById("mobile-menu");
+if (navToggle && mobileMenu) {
+  navToggle.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
+  });
+
+  // hide on outside click
+  document.addEventListener("click", (e) => {
+    if (!mobileMenu.contains(e.target) && !navToggle.contains(e.target)) {
+      mobileMenu.classList.add("hidden");
+    }
+  });
+
+  // hide when resizing to md and on larger screens
+  window.addEventListener("resize", () => {
+    if (window.innerWidth >= 768) mobileMenu.classList.add("hidden");
+  });
+}
