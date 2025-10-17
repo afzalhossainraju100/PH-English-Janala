@@ -109,8 +109,8 @@
         </div>
       </div>
     </section>
-    <section class="lecture-list mt-8 p-4">
-      <div>
+    <section id="All-lessons" class="All-lessons mt-8 p-4">
+      <div class="flex flex-col">
         <h1
           class="text-2xl sm:text-3xl md:text-[36px] font-bold leading-[40px] text-center"
         >
@@ -118,52 +118,50 @@
         </h1>
 
         <div
-          class="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-2 sm:gap-[10px] mt-10"
+          id="level-container"
+          class="flex flex-col sm:flex-row flex-wrap justify-center items-stretch gap-2 sm:gap-[10px] mt-10 w-full"
         >
-          <div
+          <!-- <button
             class="w-full sm:w-auto text-[#422AD5] p-3 border-2 box-border border-[#422AD5] rounded-sm text-center"
           >
             <i class="fa-solid fa-book-open"></i> Lesson-1
-          </div>
-          <div
+          </button>
+          <button
             class="w-full sm:w-auto text-[#422AD5] p-3 border-2 box-border border-[#422AD5] rounded-sm text-center"
           >
             <i class="fa-solid fa-book-open"></i> Lesson-2
-          </div>
-          <div
+          </button>
+          <button
             class="w-full sm:w-auto text-[#422AD5] p-3 border-2 box-border border-[#422AD5] rounded-sm text-center"
           >
             <i class="fa-solid fa-book-open"></i> Lesson-3
-          </div>
-          <div
+          </button>
+          <button
             class="w-full sm:w-auto text-[#422AD5] p-3 border-2 box-border border-[#422AD5] rounded-sm text-center"
           >
             <i class="fa-solid fa-book-open"></i> Lesson-4
-          </div>
-          <div
+          </button>
+          <button
             class="w-full sm:w-auto text-[#422AD5] p-3 border-2 box-border border-[#422AD5] rounded-sm text-center"
           >
             <i class="fa-solid fa-book-open"></i> Lesson-5
-          </div>
-          <div
+          </button>
+          <button
             class="w-full sm:w-auto text-[#422AD5] p-3 border-2 box-border border-[#422AD5] rounded-sm text-center"
           >
             <i class="fa-solid fa-book-open"></i> Lesson-6
-          </div>
-          <div
+          </button>
+          <button
             class="w-full sm:w-auto text-[#422AD5] p-3 border-2 box-border border-[#422AD5] rounded-sm text-center"
           >
             <i class="fa-solid fa-book-open"></i> Lesson-7
-          </div>
+          </button> -->
         </div>
       </div>
     </section>
 
-    <section id="lecture" class="px-10 lecture mt-4 mb-4">
+    <section id="lecture-details" class="px-10 lecture mt-4 mb-4">
       <div id="lecture-content" class="p-8 text-center bg-[#F8F8F8]">
-        <!-- defult -->
-        <!-- <p class="font-bangla text-[#79716B] text-[14px] font-[400] leading-6 text-center">আপনি এখনো কোন Lesson Select করেন নি</p>
-      <h1 class="text-[#292524] text-[34px] font-[500] leading-10 text-center font-bangla">একটি Lesson Select করুন।</h1> -->
         <!-- for not available section -->
         <!-- <div>
         <div class="p-10">
@@ -172,8 +170,20 @@
           <h1 class="text-[#292524] text-[34px] font-[500] text-center font-bangla">নেক্সট Lesson এ যান</h1>
         </div>
        </div> -->
+
+        <!-- defult -->
+        <p
+          class="font-bangla text-[#79716B] text-[14px] font-[400] leading-6 text-center"
+        >
+          আপনি এখনো কোন Lesson Select করেন নি
+        </p>
+        <h1
+          class="text-[#292524] text-[34px] font-[500] leading-10 text-center font-bangla"
+        >
+          একটি Lesson Select করুন।
+        </h1>
         <!-- grid and available section -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           <div
             class="p-10 bg-[#FFFFFF] rounded-lg flex flex-col justify-between"
           >
@@ -348,7 +358,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </section>
 
@@ -488,5 +498,6 @@
     </footer>
 
     <script src="./EnglishJanala.js"></script>
+    <script src="index.js"></script>
   </body>
 </html>
