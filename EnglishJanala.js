@@ -1,8 +1,4 @@
-/* Runtime flow (minimal):
-  1) loadLessons() fetches lesson list -> displayLessons()
-  2) Clicking a lesson calls loadLevelWord(id) -> displayLevelWord()
-  3) Clicking info calls loadWordDetails(id) -> displayWordDetails()
-*/
+// Flow: loadLessons -> displayLessons -> loadLevelWord -> displayLevelWord -> loadWordDetails -> displayWordDetails
 const createElement = (arr) => {
   const htmlElements = arr
     .map(
@@ -20,6 +16,12 @@ const manageSpinner = (status) => {
     document.getElementById("word-container").classList.remove("hidden");
   }
 };
+function pronounceWord(word) {
+  const utterance = new SpeechSynthesisUtterance(word);
+  utterance.lang = "en-EN"; // English
+  window.speechSynthesis.speak(utterance);
+}
+
 const loadLessons = () => {
   fetch("https://openapi.programming-hero.com/api/levels/all") // promise of response
     .then((res) => res.json()) // promise of json data
@@ -116,7 +118,6 @@ const displayWordDetails = (word) => {
 };
 const displayLevelWord = (words) => {
   const wordContainer = document.getElementById("word-container");
-  // Clear previous content
   wordContainer.innerHTML = "";
 
   if (words.length == 0) {
@@ -167,7 +168,9 @@ const displayLevelWord = (words) => {
               })" class="p-3 bg-[#1a91ff1a] rounded-md">
                 <i class="fa-solid fa-circle-info"></i>
               </button>
-              <button class="p-3 bg-[#1a91ff1a] rounded-md">
+              <button onclick="pronounceWord('${
+                word.word
+              }')" class="p-3 bg-[#1a91ff1a] rounded-md">
                 <i class="fa-solid fa-volume-high"></i>
               </button>
             </div>
@@ -179,22 +182,18 @@ const displayLevelWord = (words) => {
   });
 };
 const displayLessons = (lessons) => {
-  // Container validation
   const levelContainer = document.getElementById("level-container");
   if (!levelContainer) {
     console.warn("#level-container element not found in DOM");
     return;
   }
-  // clear previous content
   levelContainer.innerHTML = "";
 
-  // 2. validate lessons is iterable (array)
   if (!Array.isArray(lessons) || lessons.length === 0) {
     levelContainer.innerHTML =
       '<p class="text-center text-gray-500">No lessons available.</p>';
     return;
   }
-  // 3. render each lesson safely
   for (const lesson of lessons) {
     const btnDiv = document.createElement("div");
     // try to display a sensible label from the lesson object
@@ -209,33 +208,52 @@ const displayLessons = (lessons) => {
         </button>
     `;
 
-    // 4. append child into container
     levelContainer.appendChild(btnDiv);
   }
 };
-// expose handlers to the global window so inline `onclick` attributes work
+// expose handlers to window for inline onclicks
 window.loadLevelWord = loadLevelWord;
 window.loadWordDetails = loadWordDetails;
 window.loadLessons = loadLessons;
 window.removeActive = removeActive;
-//first function call
 loadLessons();
+// search
+document.getElementById("btn-search").addEventListener("click", () => {
+  removeActive();
+  const inputSearch = document.getElementById("input-search");
+  const inputSearchValue = inputSearch.value.trim().toLowerCase();
 
-//for search
-document.getElementById("btn-search").addEventListener("click",()=>{
-    removeActive();
-    const inputSearch = document.getElementById("input-search");
-    const inputSearchValue=inputSearch.value.trim().toLowerCase();
+  fetch("https://openapi.programming-hero.com/api/words/all")
+    .then((res) => res.json())
+    .then((data) => {
+      const allWords = data.data;
+      const filterWords = allWords.filter((word) =>
+        word.word.toLowerCase().includes(inputSearchValue)
+      );
 
-    fetch("https://openapi.programming-hero.com/api/words/all")
-    .then((res)=>res.json())
-    .then((data)=>{
-        const allWords = data.data;
-        const filterWords = allWords.filter((word) => word.word.toLowerCase().includes(inputSearchValue));
-
-        displayLevelWord(filterWords);
+      displayLevelWord(filterWords);
     });
-
 });
 
-// {id: 46, level: 5, word: 'Unravel', meaning: 'উন্মোচন করা / খোলাসা করা', pronunciation: 'আনর‍্যাভেল'}
+//plus minus toggle function setupToggleButtons()
+const toggleButtons = document.querySelectorAll(".plus, .minus");
+toggleButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const parentLi = button.closest("li");
+    const paragraph = parentLi.querySelector("p");
+
+    if (button.classList.contains("plus")) {
+      paragraph.style.display = "block";
+      parentLi.querySelector(".plus").style.display = "none";
+      parentLi.querySelector(".minus").style.display = "inline";
+    } else {
+      paragraph.style.display = "none";
+      parentLi.querySelector(".plus").style.display = "inline";
+      parentLi.querySelector(".minus").style.display = "none";
+    }
+  });
+});
+
+// Initially hide all paragraphs and show only plus buttons
+document.querySelectorAll("li p").forEach((p) => (p.style.display = "none"));
+document.querySelectorAll(".minus").forEach((btn) => (btn.style.display = "none"));
