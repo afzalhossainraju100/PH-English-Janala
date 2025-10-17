@@ -121,244 +121,33 @@
           id="level-container"
           class="flex flex-col sm:flex-row flex-wrap justify-center items-stretch gap-2 sm:gap-[10px] mt-10 w-full"
         >
-          <!-- <button
-            class="w-full sm:w-auto text-[#422AD5] p-3 border-2 box-border border-[#422AD5] rounded-sm text-center"
-          >
-            <i class="fa-solid fa-book-open"></i> Lesson-1
-          </button>
-          <button
-            class="w-full sm:w-auto text-[#422AD5] p-3 border-2 box-border border-[#422AD5] rounded-sm text-center"
-          >
-            <i class="fa-solid fa-book-open"></i> Lesson-2
-          </button>
-          <button
-            class="w-full sm:w-auto text-[#422AD5] p-3 border-2 box-border border-[#422AD5] rounded-sm text-center"
-          >
-            <i class="fa-solid fa-book-open"></i> Lesson-3
-          </button>
-          <button
-            class="w-full sm:w-auto text-[#422AD5] p-3 border-2 box-border border-[#422AD5] rounded-sm text-center"
-          >
-            <i class="fa-solid fa-book-open"></i> Lesson-4
-          </button>
-          <button
-            class="w-full sm:w-auto text-[#422AD5] p-3 border-2 box-border border-[#422AD5] rounded-sm text-center"
-          >
-            <i class="fa-solid fa-book-open"></i> Lesson-5
-          </button>
-          <button
-            class="w-full sm:w-auto text-[#422AD5] p-3 border-2 box-border border-[#422AD5] rounded-sm text-center"
-          >
-            <i class="fa-solid fa-book-open"></i> Lesson-6
-          </button>
-          <button
-            class="w-full sm:w-auto text-[#422AD5] p-3 border-2 box-border border-[#422AD5] rounded-sm text-center"
-          >
-            <i class="fa-solid fa-book-open"></i> Lesson-7
-          </button> -->
+          <!-- data comes form js -->
         </div>
       </div>
     </section>
 
     <section id="lecture-details" class="px-10 lecture mt-4 mb-4">
-      <div id="lecture-content" class="p-8 text-center bg-[#F8F8F8]">
-        <!-- for not available section -->
-        <!-- <div>
-        <div class="p-10">
-         <div class="flex flex-col items-center"><img src="./assets/alert-error.png" alt="attention"></div>
-          <p class="text-[#79716b] text-[13px] font-[400] leading-[24px] text-center font-bangla">এই Lesson এ এখনো কোন Vocabulary যুক্ত করা হয়নি।</p>
-          <h1 class="text-[#292524] text-[34px] font-[500] text-center font-bangla">নেক্সট Lesson এ যান</h1>
-        </div>
-       </div> -->
-
-        <!-- defult -->
-        <p
-          class="font-bangla text-[#79716B] text-[14px] font-[400] leading-6 text-center"
-        >
-          আপনি এখনো কোন Lesson Select করেন নি
-        </p>
-        <h1
-          class="text-[#292524] text-[34px] font-[500] leading-10 text-center font-bangla"
-        >
-          একটি Lesson Select করুন।
-        </h1>
+      <div class="p-8 text-center bg-[#F8F8F8]">
         <!-- grid and available section -->
-        <!-- <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div
-            class="p-10 bg-[#FFFFFF] rounded-lg flex flex-col justify-between"
+        <div
+          id="word-container"
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
+                <!-- default -->
+        <div class="grid col-span-full">
+          <p
+            class="font-bangla text-[#79716B] text-[14px] font-[400] leading-6 text-center"
           >
-            <div>
-              <h1
-                class="text-[32px] font-[700] leanding-[24px] text-center text-[#000000]"
-              >
-                Eager
-              </h1>
-              <p
-                class="text-[#000000] text-[20px] font-[500] leanding-6 text-center"
-              >
-                Meaning /Pronounciation
-              </p>
-              <h1
-                class="font-bangla text-[32px] font-[600] leanding-none text-center text-[#18181b]"
-              >
-                "আগ্রহী / ইগার"
-              </h1>
-            </div>
-            <div class="flex justify-between items-center mt-5">
-              <div class="p-3 bg-[#1a91ff1a] rounded-md">
-                <i class="fa-solid fa-circle-info"></i>
-              </div>
-              <div class="p-3 bg-[#1a91ff1a] rounded-md">
-                <i class="fa-solid fa-volume-high"></i>
-              </div>
-            </div>
-          </div>
-          <div
-            class="p-10 bg-[#FFFFFF] rounded-lg flex flex-col justify-between"
+            আপনি এখনো কোন Lesson Select করেন নি
+          </p>
+          <h1
+            class="text-[#292524] text-[34px] font-[500] leading-10 text-center font-bangla"
           >
-            <div>
-              <h1
-                class="text-[32px] font-[700] leanding-[24px] text-center text-[#000000]"
-              >
-                Hesitate
-              </h1>
-              <p
-                class="text-[#000000] text-[20px] font-[500] leanding-6 text-center"
-              >
-                Meaning /Pronounciation
-              </p>
-              <h1
-                class="font-bangla text-[32px] font-[600] leanding-none text-center text-[#18181b]"
-              >
-                "দ্বিধা করা / হেজিটেট"
-              </h1>
-            </div>
-            <div class="flex justify-between items-center mt-5">
-              <div class="p-3 bg-[#1a91ff1a] rounded-md">
-                <i class="fa-solid fa-circle-info"></i>
-              </div>
-              <div class="p-3 bg-[#1a91ff1a] rounded-md">
-                <i class="fa-solid fa-volume-high"></i>
-              </div>
-            </div>
-          </div>
-          <div
-            class="p-10 bg-[#FFFFFF] rounded-lg flex flex-col justify-between"
-          >
-            <div>
-              <h1
-                class="text-[32px] font-[700] leanding-[24px] text-center text-[#000000]"
-              >
-                Linger
-              </h1>
-              <p
-                class="text-[#000000] text-[20px] font-[500] leanding-6 text-center"
-              >
-                Meaning /Pronounciation
-              </p>
-              <h1
-                class="font-bangla text-[32px] font-[600] leanding-none text-center text-[#18181b]"
-              >
-                "থেমে থাকা / বিলম্ব করা / লিঙ্গার"
-              </h1>
-            </div>
-            <div class="flex justify-between items-center mt-5">
-              <div class="p-3 bg-[#1a91ff1a] rounded-md">
-                <i class="fa-solid fa-circle-info"></i>
-              </div>
-              <div class="p-3 bg-[#1a91ff1a] rounded-md">
-                <i class="fa-solid fa-volume-high"></i>
-              </div>
-            </div>
-          </div>
-          <div
-            class="p-10 bg-[#FFFFFF] rounded-lg flex flex-col justify-between"
-          >
-            <div>
-              <h1
-                class="text-[32px] font-[700] leanding-[24px] text-center text-[#000000]"
-              >
-                Nourish
-              </h1>
-              <p
-                class="text-[#000000] text-[20px] font-[500] leanding-6 text-center"
-              >
-                Meaning /Pronounciation
-              </p>
-              <h1
-                class="font-bangla text-[32px] font-[600] leanding-none text-center text-[#18181b]"
-              >
-                পুষ্টি যোগানো / নরিশ"
-              </h1>
-            </div>
-            <div class="flex justify-between items-center mt-5">
-              <div class="p-3 bg-[#1a91ff1a] rounded-md">
-                <i class="fa-solid fa-circle-info"></i>
-              </div>
-              <div class="p-3 bg-[#1a91ff1a] rounded-md">
-                <i class="fa-solid fa-volume-high"></i>
-              </div>
-            </div>
-          </div>
-          <div
-            class="p-10 bg-[#FFFFFF] rounded-lg flex flex-col justify-between"
-          >
-            <div>
-              <h1
-                class="text-[32px] font-[700] leanding-[24px] text-center text-[#000000]"
-              >
-                Reluctant
-              </h1>
-              <p
-                class="text-[#000000] text-[20px] font-[500] leanding-6 text-center"
-              >
-                Meaning /Pronounciation
-              </p>
-              <h1
-                class="font-bangla text-[32px] font-[600] leanding-none text-center text-[#18181b]"
-              >
-                "অনিচ্ছুক / রিলাকট্যান্ট"
-              </h1>
-            </div>
-            <div class="flex justify-between items-center mt-5">
-              <div class="p-3 bg-[#1a91ff1a] rounded-md">
-                <i class="fa-solid fa-circle-info"></i>
-              </div>
-              <div class="p-3 bg-[#1a91ff1a] rounded-md">
-                <i class="fa-solid fa-volume-high"></i>
-              </div>
-            </div>
-          </div>
-          <div
-            class="p-10 bg-[#FFFFFF] rounded-lg flex flex-col justify-between"
-          >
-            <div>
-              <h1
-                class="text-[32px] font-[700] leanding-[24px] text-center text-[#000000]"
-              >
-                Vague
-              </h1>
-              <p
-                class="text-[#000000] text-[20px] font-[500] leanding-6 text-center"
-              >
-                Meaning /Pronounciation
-              </p>
-              <h1
-                class="font-bangla text-[32px] font-[600] leanding-none text-center text-[#18181b]"
-              >
-                "অস্পষ্ট / ভ্যাগ"
-              </h1>
-            </div>
-            <div class="flex justify-between items-center mt-5">
-              <div class="p-3 bg-[#1a91ff1a] rounded-md">
-                <i class="fa-solid fa-circle-info"></i>
-              </div>
-              <div class="p-3 bg-[#1a91ff1a] rounded-md">
-                <i class="fa-solid fa-volume-high"></i>
-              </div>
-            </div>
-          </div>
-        </div> -->
+            একটি Lesson Select করুন।
+          </h1>
+          </div>    
+          <!-- data comes form js -->
+        </div>
       </div>
     </section>
 
@@ -450,6 +239,36 @@
         </div>
       </div>
     </section>
+
+
+
+
+
+
+<!-- Open the modal using ID.showModal() method -->
+<button class="btn" onclick="my_modal_5.showModal()">open modal</button>
+<dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+  <div class="modal-box">
+    <h3 class="text-lg font-bold">Hello!</h3>
+    <p class="py-4">Press ESC key or click the button below to close</p>
+    <div class="modal-action">
+      <form method="dialog">
+        <!-- if there is a button in form, it will close the modal -->
+        <button class="btn">Close</button>
+      </form>
+    </div>
+  </div>
+</dialog>
+
+
+
+
+
+
+
+
+
+
     <footer class="box-border border-t-[3px] border-t-[#ffebeb] bg-white">
       <div class="p-10 flex justify-between">
         <div class="flex flex-col gap-6 justify-center">
