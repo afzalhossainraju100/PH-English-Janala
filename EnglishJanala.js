@@ -220,3 +220,22 @@ window.loadLessons = loadLessons;
 window.removeActive = removeActive;
 //first function call
 loadLessons();
+
+//for search
+document.getElementById("btn-search").addEventListener("click",()=>{
+    removeActive();
+    const inputSearch = document.getElementById("input-search");
+    const inputSearchValue=inputSearch.value.trim().toLowerCase();
+
+    fetch("https://openapi.programming-hero.com/api/words/all")
+    .then((res)=>res.json())
+    .then((data)=>{
+        const allWords = data.data;
+        const filterWords = allWords.filter((word) => word.word.toLowerCase().includes(inputSearchValue));
+
+        displayLevelWord(filterWords);
+    });
+
+});
+
+// {id: 46, level: 5, word: 'Unravel', meaning: 'উন্মোচন করা / খোলাসা করা', pronunciation: 'আনর‍্যাভেল'}
