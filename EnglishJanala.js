@@ -1,3 +1,23 @@
+const createElement = (arr) => {
+  const htmlElements = arr
+    .map(
+      (item) =>
+        `<span class="btn bg-[#D7E4EF] p-2 rounded-lg">${item}</span>`
+    )
+    .join("");
+  return htmlElements;
+};
+
+const manageSpinner=(status)=>{
+    if(status==true){
+        document.getElementById("spinner").classList.remove("hidden");
+        document.getElementById("word-container").classList.add("hidden");
+    }else{
+        document.getElementById("spinner").classList.add("hidden");
+        document.getElementById("word-container").classList.remove("hidden");
+    }
+}
+
 const loadLessons = () => {
   fetch("https://openapi.programming-hero.com/api/levels/all") // promise of response
     .then((res) => res.json()) // promise of json data
@@ -21,6 +41,7 @@ const removeActive = () => {
   console.log(lessonButtons);
 };
 const loadLevelWord = (id) => {
+    manageSpinner(true);
   const url = `https://openapi.programming-hero.com/api/level/${id}`;
   fetch(url)
     .then((res) => res.json())
@@ -30,6 +51,68 @@ const loadLevelWord = (id) => {
       clickBtn.classList.add("active");
       displayLevelWord(data.data);
     });
+};
+const loadWordDetails = async (id) => {
+  const url = `https://openapi.programming-hero.com/api/word/${id}`;
+  const res = await fetch(url);
+  const details = await res.json();
+  displayWordDetails(details.data);
+};
+const displayWordDetails = (word) => {
+  console.log(word);
+  const detailsContainer = document.getElementById("details-container");
+  detailsContainer.innerHTML = `
+    <div
+              class="p-5 bg-[#ffffff] border-2 box-border border-[#edf7ff] rounded-lg flex flex-col gap-3"
+            >
+              <h1
+                class="text-[#000000] text-[32px] font-[600] leading-[40px] text-left"
+              >
+                ${word.word} (<i class="fa-solid fa-microphone-lines"></i>: ${word.pronunciation})
+              </h1>
+
+              <div>
+                <h2
+                  class="text-[#000000] text-[24px] font-[600] leading-[40px] text-left"
+                >
+                  Meaning
+                </h2>
+                <h3
+                  class="text-[#000000] text-[24px] font-[400] opacity-80 leading-[40px] text-left"
+                >
+                  ${word.meaning}
+                </h3>
+              </div>
+
+              <div>
+                <h2
+                  class="text-[#000000] text-[24px] font-[600] leading-[40px] text-left"
+                >
+                  Example
+                </h2>
+                <p
+                  class="text-[#000000] text-[24px] font-[400] opacity-80 leading-[40px] text-left"
+                >
+                  ${word.sentence}
+                </p>
+              </div>
+
+              <div>
+                <h2
+                  class="text-[#000000] text-[24px] font-[500] leading-[40px] text-left"
+                >
+                  সমার্থক শব্দ গুলো
+                </h2>
+                <div class="flex justify-start gap-2">
+                  ${createElement(word.synonyms)}
+              </div>
+            </div>
+          </div>
+                      <button class="bg-blue-700 mt-4 p-2 rounded-lg text-[#ffffff]">
+              Complete Learning
+            </button>
+    `;
+  document.getElementById("word_modal").showModal();
 };
 
 const displayLevelWord = (words) => {
@@ -48,6 +131,7 @@ const displayLevelWord = (words) => {
         </div>
        </div>
       `;
+      manageSpinner(false);
     return;
   }
 
@@ -79,7 +163,9 @@ const displayLevelWord = (words) => {
               </h1>
             </div>
             <div class="flex justify-between items-center mt-5">
-              <button onclick="my_modal_5.showModal()" class="p-3 bg-[#1a91ff1a] rounded-md">
+              <button onclick="loadWordDetails(${
+                word.id
+              })" class="p-3 bg-[#1a91ff1a] rounded-md">
                 <i class="fa-solid fa-circle-info"></i>
               </button>
               <button class="p-3 bg-[#1a91ff1a] rounded-md">
@@ -90,6 +176,7 @@ const displayLevelWord = (words) => {
         `;
     //append child into container
     wordContainer.appendChild(wordDiv);
+    manageSpinner(false);
   });
 };
 

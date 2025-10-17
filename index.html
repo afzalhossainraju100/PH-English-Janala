@@ -126,6 +126,10 @@
       </div>
     </section>
 
+    <section id="spinner" class="flex justify-center items-center py-10 hidden">
+      <span class="loading loading-bars loading-xl"></span>
+    </section>
+
     <section id="lecture-details" class="px-10 lecture mt-4 mb-4">
       <div class="p-8 text-center bg-[#F8F8F8]">
         <!-- grid and available section -->
@@ -133,19 +137,19 @@
           id="word-container"
           class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
         >
-                <!-- default -->
-        <div class="grid col-span-full">
-          <p
-            class="font-bangla text-[#79716B] text-[14px] font-[400] leading-6 text-center"
-          >
-            আপনি এখনো কোন Lesson Select করেন নি
-          </p>
-          <h1
-            class="text-[#292524] text-[34px] font-[500] leading-10 text-center font-bangla"
-          >
-            একটি Lesson Select করুন।
-          </h1>
-          </div>    
+          <!-- default -->
+          <div class="grid col-span-full">
+            <p
+              class="font-bangla text-[#79716B] text-[14px] font-[400] leading-6 text-center"
+            >
+              আপনি এখনো কোন Lesson Select করেন নি
+            </p>
+            <h1
+              class="text-[#292524] text-[34px] font-[500] leading-10 text-center font-bangla"
+            >
+              একটি Lesson Select করুন।
+            </h1>
+          </div>
           <!-- data comes form js -->
         </div>
       </div>
@@ -240,34 +244,19 @@
       </div>
     </section>
 
-
-
-
-
-
-<!-- Open the modal using ID.showModal() method -->
-<button class="btn" onclick="my_modal_5.showModal()">open modal</button>
-<dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
-  <div class="modal-box">
-    <h3 class="text-lg font-bold">Hello!</h3>
-    <p class="py-4">Press ESC key or click the button below to close</p>
-    <div class="modal-action">
-      <form method="dialog">
-        <!-- if there is a button in form, it will close the modal -->
-        <button class="btn">Close</button>
-      </form>
-    </div>
-  </div>
-</dialog>
-
-
-
-
-
-
-
-
-
+    <dialog id="word_modal" class="modal modal-bottom sm:modal-middle">
+      <div class="modal-box">
+        <div id="details-container" class="bg-[#ffffff] p-2 rounded-lg">
+          <!-- come from js -->
+        </div>
+        <div class="modal-action">
+          <form method="dialog">
+            <!-- if there is a button in form, it will close the modal -->
+            <button class="btn">Close</button>
+          </form>
+        </div>
+      </div>
+    </dialog>
 
     <footer class="box-border border-t-[3px] border-t-[#ffebeb] bg-white">
       <div class="p-10 flex justify-between">
