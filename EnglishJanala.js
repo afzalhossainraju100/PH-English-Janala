@@ -1,29 +1,30 @@
+/* Runtime flow (minimal):
+  1) loadLessons() fetches lesson list -> displayLessons()
+  2) Clicking a lesson calls loadLevelWord(id) -> displayLevelWord()
+  3) Clicking info calls loadWordDetails(id) -> displayWordDetails()
+*/
 const createElement = (arr) => {
   const htmlElements = arr
     .map(
-      (item) =>
-        `<span class="btn bg-[#D7E4EF] p-2 rounded-lg">${item}</span>`
+      (item) => `<span class="btn bg-[#D7E4EF] p-2 rounded-lg">${item}</span>`
     )
     .join("");
   return htmlElements;
 };
-
-const manageSpinner=(status)=>{
-    if(status==true){
-        document.getElementById("spinner").classList.remove("hidden");
-        document.getElementById("word-container").classList.add("hidden");
-    }else{
-        document.getElementById("spinner").classList.add("hidden");
-        document.getElementById("word-container").classList.remove("hidden");
-    }
-}
-
+const manageSpinner = (status) => {
+  if (status == true) {
+    document.getElementById("spinner").classList.remove("hidden");
+    document.getElementById("word-container").classList.add("hidden");
+  } else {
+    document.getElementById("spinner").classList.add("hidden");
+    document.getElementById("word-container").classList.remove("hidden");
+  }
+};
 const loadLessons = () => {
   fetch("https://openapi.programming-hero.com/api/levels/all") // promise of response
     .then((res) => res.json()) // promise of json data
     .then((data) => {
-      // The API often returns an object like { status: true, data: [...] }
-      // Normalize to an array if possible, otherwise pass an empty array
+      // Normalize various API response shapes to an array
       const lessons = Array.isArray(data)
         ? data
         : Array.isArray(data?.data)
@@ -41,7 +42,7 @@ const removeActive = () => {
   console.log(lessonButtons);
 };
 const loadLevelWord = (id) => {
-    manageSpinner(true);
+  manageSpinner(true);
   const url = `https://openapi.programming-hero.com/api/level/${id}`;
   fetch(url)
     .then((res) => res.json())
@@ -68,7 +69,9 @@ const displayWordDetails = (word) => {
               <h1
                 class="text-[#000000] text-[32px] font-[600] leading-[40px] text-left"
               >
-                ${word.word} (<i class="fa-solid fa-microphone-lines"></i>: ${word.pronunciation})
+                ${word.word} (<i class="fa-solid fa-microphone-lines"></i>: ${
+    word.pronunciation
+  })
               </h1>
 
               <div>
@@ -108,13 +111,9 @@ const displayWordDetails = (word) => {
               </div>
             </div>
           </div>
-                      <button class="bg-blue-700 mt-4 p-2 rounded-lg text-[#ffffff]">
-              Complete Learning
-            </button>
     `;
   document.getElementById("word_modal").showModal();
 };
-
 const displayLevelWord = (words) => {
   const wordContainer = document.getElementById("word-container");
   // Clear previous content
@@ -131,7 +130,7 @@ const displayLevelWord = (words) => {
         </div>
        </div>
       `;
-      manageSpinner(false);
+    manageSpinner(false);
     return;
   }
 
@@ -179,9 +178,8 @@ const displayLevelWord = (words) => {
     manageSpinner(false);
   });
 };
-
 const displayLessons = (lessons) => {
-  // 1. get the container & validate
+  // Container validation
   const levelContainer = document.getElementById("level-container");
   if (!levelContainer) {
     console.warn("#level-container element not found in DOM");
@@ -215,4 +213,10 @@ const displayLessons = (lessons) => {
     levelContainer.appendChild(btnDiv);
   }
 };
+// expose handlers to the global window so inline `onclick` attributes work
+window.loadLevelWord = loadLevelWord;
+window.loadWordDetails = loadWordDetails;
+window.loadLessons = loadLessons;
+window.removeActive = removeActive;
+//first function call
 loadLessons();
