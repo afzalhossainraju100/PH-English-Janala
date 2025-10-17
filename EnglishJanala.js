@@ -256,4 +256,23 @@ toggleButtons.forEach((button) => {
 
 // Initially hide all paragraphs and show only plus buttons
 document.querySelectorAll("li p").forEach((p) => (p.style.display = "none"));
-document.querySelectorAll(".minus").forEach((btn) => (btn.style.display = "none"));
+document
+  .querySelectorAll(".minus")
+  .forEach((btn) => (btn.style.display = "none"));
+
+// Toggle navbar background between transparent (top) and opaque on scroll
+window.addEventListener("scroll", () => {
+  const nav = document.getElementById("navbar");
+  if (!nav) return;
+  if (window.scrollY > 10) {
+    nav.classList.remove("bg-transparent");
+    nav.classList.add("bg-[#badeff]");
+  } else {
+    nav.classList.remove("bg-[#badeff]");
+    nav.classList.add("bg-[#badeff56]");
+  }
+  if (window.scrollY  <=  10) {
+    nav.classList.remove("bg-[#badeff]");
+    nav.classList.add("bg-[#badeff56]");
+  }
+});
